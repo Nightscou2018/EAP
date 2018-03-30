@@ -20,4 +20,4 @@ install:
     - platformio lib -g install https://github.com/adafruit/RadioHead.git
 
 script:
-  - platformio ci --lib="." --board=ID_1 --board=ID_2 --board=ID_N
+  - platformio ci --lib="." --board=esp32dev
