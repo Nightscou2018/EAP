@@ -1,0 +1,24 @@
+language: python
+python:
+    - "2.7"
+
+# Cache PlatformIO packages using Travis CI container-based infrastructure
+sudo: false
+cache:
+    directories:
+        - "~/.platformio"
+
+env:
+    - LINUX_SRC=linux
+    - PLATFORMIO_CI_SRC=features/Radio PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/Profile PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/ PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+
+install:
+    - pip install -U platformio
+    - platformio update
+    - platformio lib -g install https://github.com/adafruit/RadioHead.git
+
+script:
+    - platformio ci --lib="." --board=esp32dev
+    - make travis-build
