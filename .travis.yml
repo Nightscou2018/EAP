@@ -10,8 +10,8 @@ cache:
 
 env:
     - LINUX_SRC=linux
-    - PLATFORMIO_CI_SRC=features/radio # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
-    - PLATFORMIO_CI_SRC=features/profile # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/Radio/radio # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/Profile/profile # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
     #- PLATFORMIO_CI_SRC=features PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
 
 install:
