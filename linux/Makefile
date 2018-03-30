@@ -3,7 +3,7 @@ CFLAGS= -Wall -O2 -std=c99
 LDFLAGS=
 
 PROG= source
-OBJ= main.o
+OBJ=main.o
 
 .PHONY: all clean install
 

@@ -10,8 +10,8 @@ cache:
 
 env:
     - LINUX_SRC=linux
-    - PLATFORMIO_CI_SRC=features/radio PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
-    - PLATFORMIO_CI_SRC=features/profile PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/radio # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
+    - PLATFORMIO_CI_SRC=features/profile # PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
     #- PLATFORMIO_CI_SRC=features PLATFORMIO_CI_EXTRA_ARGS="--board=--board=esp32dev"
 
 install:
@@ -19,5 +19,5 @@ install:
     - platformio update
     - platformio lib -g install https://github.com/adafruit/RadioHead.git
 
-script: make travis-build
-    #- platformio ci --lib="." --board=esp32dev
+script:
+  - platformio ci --lib="." --board=ID_1 --board=ID_2 --board=ID_N
