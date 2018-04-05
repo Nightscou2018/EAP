@@ -1,0 +1,6 @@
+# ignore build files
+*.o
+*.exe
+
+# ignore pio files
+.pioenvs
