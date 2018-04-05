@@ -10,14 +10,9 @@ cache:
   - "~/.platformio"
   - "./.pioenvs"
 
-env:
-    - LINUX_SRC=linux
-    - PLATFORMIO_CI_SRC=features/Radio/radio
-    - PLATFORMIO_CI_SRC=features/Profile/profile
-
 install:
     - pip install -U platformio
     - platformio update
 
 script:
-  - platformio ci features/ --board=esp32dev --lib="."
+  - platformio run -s
