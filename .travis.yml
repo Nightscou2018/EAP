@@ -5,8 +5,10 @@ python:
 # Cache PlatformIO packages using Travis CI container-based infrastructure
 sudo: false
 cache:
-    directories:
-        - "~/.platformio"
+  pip: true
+  directories:
+  - "~/.platformio"
+  - "./.pioenvs"
 
 env:
     - LINUX_SRC=linux
