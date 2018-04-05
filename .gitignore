@@ -4,3 +4,9 @@
 
 # ignore pio files
 .pioenvs
+.piolibdeps
+
+# ignore ide files
+.clang_complete
+.gcc-flags.json
+
