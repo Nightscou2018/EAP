@@ -22,8 +22,6 @@
 <!--- Providing context helps us come up with a solution that is most useful in the real world -->
 - System (microcontroller):
 - Software version:
-- Pump type:
-- Pump software version:
 
 ## Detailed Description
 <!--- Provide a detailed description of the change or addition you are proposing -->
