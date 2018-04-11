@@ -7,7 +7,7 @@ static uint8_t reflect(const uint8_t input)
 {
   uint8_t residue = 0;
 
-  for(int i = 0; i < sizeof(uint8_t) * 8; i++)
+  for(uint8_t i = 0; i < sizeof(uint8_t) * 8; i++)
   {
     if(input & (1 << i))
     {
@@ -56,7 +56,7 @@ uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count)
   }
 
   uint8_t crc = 0x00;
-  for(int i = 0; i < count; i++)
+  for(uint8_t i = 0; i < count; i++)
   {
     uint8_t currByte = reflect(data[i]);
     crc ^= currByte;
