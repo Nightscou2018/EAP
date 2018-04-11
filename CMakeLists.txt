@@ -5,12 +5,12 @@ project(${PROJECT_NAME_STR} C CXX)
 find_package(Threads REQUIRED)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions(-Wall -ansi -Wno-deprecated -std=c++11 -pedantic)
+    add_definitions(-Wall -ansi -Wno-deprecated -std=gnu++11 -pedantic)
 endif()
 
 # set common include folder for module
 set(COMMON_INCLUDES 
-  ${PROJECT_SOURCE_DIR}/lib/asset
+  ${PROJECT_SOURCE_DIR}/lib/validation
   )
 
 MESSAGE(STATUS "COMMON_INCLUDES: " ${COMMON_INCLUDES})
@@ -41,7 +41,7 @@ enable_testing()
 
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_SRC_FILES
-  ${TEST_DIR}/test-example.cpp
+  ${TEST_DIR}/test_crc.cpp
   )
 
 foreach(_test_file ${TEST_SRC_FILES})
