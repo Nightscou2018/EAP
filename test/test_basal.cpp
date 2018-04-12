@@ -38,7 +38,7 @@ TEST(TestBasalLookUp, BadSchedule)
   Helper helper;
 
   const char * start = "10:20:00";
-  time_t startMin;
+  time_t startMin = helper.StringToTime(start);
 
   const char * nowStr = "10:45:00";
   time_t now = helper.StringToTime(nowStr);
