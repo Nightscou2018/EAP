@@ -9,8 +9,10 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 # set common include folder for module
-set(COMMON_INCLUDES 
+set(COMMON_INCLUDES
   ${PROJECT_SOURCE_DIR}/lib/validation
+  ${PROJECT_SOURCE_DIR}/lib/profile/basal
+  ${PROJECT_SOURCE_DIR}/lib/utilities
   )
 
 MESSAGE(STATUS "COMMON_INCLUDES: " ${COMMON_INCLUDES})
@@ -21,7 +23,7 @@ set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
 include(${EXT_PROJECTS_DIR}/gtest/GoogleTest.cmake)
 
 include_directories(
-  ${GTEST_INCLUDE_DIRS} 
+  ${GTEST_INCLUDE_DIRS}
   ${COMMON_INCLUDES}
   )
 
@@ -42,6 +44,7 @@ enable_testing()
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_SRC_FILES
   ${TEST_DIR}/test_crc.cpp
+  ${TEST_DIR}/test_basal.cpp
   )
 
 foreach(_test_file ${TEST_SRC_FILES})
@@ -51,4 +54,3 @@ foreach(_test_file ${TEST_SRC_FILES})
     target_link_libraries(${_test_name} ${TEST_LINK_LIBRARIES})
     add_test(${_test_name} ${_test_name})
 endforeach()
-
