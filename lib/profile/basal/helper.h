@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include <windows.h>
+
 #include "schedule.h"
 
 class Helper
