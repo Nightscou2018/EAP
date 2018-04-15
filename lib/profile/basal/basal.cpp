@@ -39,6 +39,9 @@ int32_t Basal::BasalLookup(std::vector<Schedule*> schedules, time_t &now)
 
 int32_t Basal::MaxDailyBasal(std::vector<Schedule*> inputs)   //TODO: change input type*
 {
+  if(inputs.size() <= 0)
+  { return -1; }
+
    auto maxRate = std::max_element(inputs.begin(), inputs.end(),
                       [](Schedule  * a, Schedule * b)
                       {

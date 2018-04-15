@@ -103,3 +103,35 @@ TEST(TestBasalLookUp, minutesBiggerThanLastLog)
   EXPECT_EQ(result, -1);
 
 }
+
+TEST(TestMaxDailyBasal, emptyInput)
+{
+  Helper helper;
+  int32_t result = MaxDailyBasal(helper.GetSchedule());
+
+  EXPECT_EQ(result, -1);
+}
+
+TEST(TestMaxDailyBasal, correctInput)
+{
+  Helper helper;
+
+  const char * start  = "10:00:00";
+  const char * start1 = "10:20:00";
+  const char * start2 = "10:25:00";
+  const char * start3 = "10:30:00";
+
+  time_t startMin  = helper.StringToTime(start);
+	time_t start1Min = helper.StringToTime(start1);
+  time_t start2Min = helper.StringToTime(start2);
+	time_t start3Min = helper.StringToTime(start3);
+
+  helper.AddToSchedule(start , 5, helper.Minutes(startMin));
+	helper.AddToSchedule(start1 , 2, helper.Minutes(start1Min));
+	helper.AddToSchedule(start2 , 15, helper.Minutes(start2Min));
+  helper.AddToSchedule(start3 , 1, helper.Minutes(start3Min));
+
+  int32_t result = MaxDailyBasal(helper.GetSchedule());
+
+  EXPECT_EQ(result, 15);
+}
