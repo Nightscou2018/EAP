@@ -1,23 +1,24 @@
 #include "basal.h"
 
-int Basal::BasalLookup(std::vector<Schedule*> schedules, time_t &now)
+int32_t Basal::BasalLookup(std::vector<Schedule*> schedules, time_t &now)
 {
 
     Helper helper;
-    double basalRate;
-    int minutes;
+    float basalRate;
+    int32_t minutes;
 
     if(schedules.size() <= 0)
     {  return -1; }
+
+    if(now == 0)
+    { now = time(0); }
 
     auto basalProfileData = schedules;   //TODO: Get sorted schedule if necessary
     minutes = helper.Minutes(now);
     basalRate = basalProfileData.at(0)->getRate();
 
     if(basalRate == 0.0)
-    {
-      return -1;
-    }
+    { return -1; }
 
 
     for(unsigned int i = 0; i < basalProfileData.size() - 1; ++i)
@@ -36,7 +37,7 @@ int Basal::BasalLookup(std::vector<Schedule*> schedules, time_t &now)
    return -1;
 }
 
-int Basal::MaxDailyBasal(std::vector<Schedule*> inputs)   //TODO: change input type*
+int32_t Basal::MaxDailyBasal(std::vector<Schedule*> inputs)   //TODO: change input type*
 {
    auto maxRate = std::max_element(inputs.begin(), inputs.end(),
                       [](Schedule  * a, Schedule * b)

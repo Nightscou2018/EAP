@@ -2,28 +2,27 @@
 #define __Schedule_H_
 
 #include <ctime>
-//#include <windows.h>
 #include <inttypes.h>
 
 
 class Schedule
 {
   private:
-    static int index;
+    static int32_t index;
+    int32_t rate;
+    int32_t minutes;
     time_t start;
-    int rate;
-    int minutes;
 
   public:
-    Schedule(time_t start, int rate, int minutes);
-    Schedule(int rate, int minutes);
+    Schedule(time_t start, float rate, int32_t minutes);
+    Schedule(float rate, int32_t minutes);
     Schedule();
     ~Schedule();
-    int getMinutes();
-    int getRate();
-    int getIndex();
-    time_t getStart();
-    int NowMinutes();
+    int32_t getMinutes();
+    int32_t getRate();
+    int32_t getIndex();
+    time_t  getStart();
+    int32_t NowMinutes();
 
 };
 

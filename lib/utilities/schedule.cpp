@@ -1,23 +1,25 @@
 #include "schedule.h"
 
-int Schedule::index = 0;
+int32_t Schedule::index = 0;
 
-Schedule::Schedule(time_t start, int rate, int minutes)
-:start(start),rate(rate),minutes(minutes)
+Schedule::Schedule(time_t start, float rate, int32_t minutes)
+:rate(rate),minutes(minutes),start(start)
 {
   index++;
 }
 
-Schedule::Schedule(int rate, int minutes)
+Schedule::Schedule(float rate, int32_t minutes)
 :rate(rate),minutes(minutes)
 {
+  start = NowMinutes();
   index++;
-  start = Schedule::NowMinutes();
 }
+
+Schedule::Schedule(){}
 
 Schedule::~Schedule(){}
 
-int Schedule::NowMinutes(){
+int32_t Schedule::NowMinutes(){
 
   time_t now = time(0);
   struct tm * timee;
@@ -27,17 +29,17 @@ int Schedule::NowMinutes(){
   return (timee -> tm_min);
 }
 
-int Schedule::getMinutes()
+int32_t Schedule::getMinutes()
 {
   return minutes;
 }
 
-int Schedule::getRate()
+int32_t Schedule::getRate()
 {
   return rate;
 }
 
-int Schedule::getIndex()
+int32_t Schedule::getIndex()
 {
   return index;
 }

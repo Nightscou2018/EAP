@@ -1,22 +1,23 @@
 #ifndef __BASAL_H_
 #define __BASAL_H_
 
-#include <iostream>
-#include <string>
-#include <ctime>
+#include <inttypes.h>
 #include <algorithm>
+#include <string>
 #include <vector>
 #include <math.h>
-#include <inttypes.h>
+#include <ctime>
+
+
 #include "schedule.h"
 #include "helper.h"
 
 
 namespace Basal
 {
-    int BasalLookup(std::vector<Schedule*> schedules, time_t &now);
-    int MaxDailyBasal(std::vector<Schedule*> inputs);
-    int MaxBasalLookup(std::vector<Schedule*> inputs);
+    int32_t BasalLookup(std::vector<Schedule*> schedules, time_t &now);
+    int32_t MaxDailyBasal(std::vector<Schedule*> inputs);
+    int32_t MaxBasalLookup(std::vector<Schedule*> inputs);
 
 } // namespace Basal
 
