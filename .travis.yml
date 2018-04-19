@@ -18,4 +18,4 @@ install:
 script:
   - cpplint --quiet --recursive lib --recursive src
   - platformio run -s
-  - mkdir build && cd build && cmake .. && make && make test
+  - mkdir build && cd build && cmake .. && make && ctest -V
