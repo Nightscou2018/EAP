@@ -1,24 +1,25 @@
-#ifndef __BASAL_H_
-#define __BASAL_H_
+// Copyright 2018 Elviro Junior and Rick van Schijndel
 
+#ifndef LIB_PROFILE_BASAL_BASAL_H_
+#define LIB_PROFILE_BASAL_BASAL_H_
+
+#include <math.h>
 #include <inttypes.h>
 #include <algorithm>
 #include <string>
 #include <vector>
-#include <math.h>
 #include <ctime>
+#include "utilities/schedule.h"
+#include "profile/basal/helper.h"
 
+namespace profile {
+namespace basal {
 
-#include "schedule.h"
-#include "helper.h"
+int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now);
+int32_t MaxDailyBasal(const std::vector<Schedule*> &inputs);
+int32_t MaxBasalLookup(const std::vector<Schedule*> &inputs);
 
+}  // namespace basal
+}  // namespace profile
 
-namespace Basal
-{
-    int32_t BasalLookup(std::vector<Schedule*> schedules, time_t &now);
-    int32_t MaxDailyBasal(std::vector<Schedule*> inputs);
-    int32_t MaxBasalLookup(std::vector<Schedule*> inputs);
-
-} // namespace Basal
-
-#endif
+#endif  // LIB_PROFILE_BASAL_BASAL_H_

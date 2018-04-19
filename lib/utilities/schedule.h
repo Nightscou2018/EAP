@@ -1,29 +1,30 @@
-#ifndef __Schedule_H_
-#define __Schedule_H_
+// Copyright 2018 Elviro Junior and Rick van Schijndel
 
-#include <ctime>
+#ifndef LIB_UTILITIES_SCHEDULE_H_
+#define LIB_UTILITIES_SCHEDULE_H_
+
 #include <inttypes.h>
+#include <ctime>
 
+namespace profile {
 
-class Schedule
-{
-  private:
-    static int32_t index;
-    int32_t rate;
-    int32_t minutes;
+class Schedule {
+ private:
+    uint16_t index;
     time_t start;
+    int32_t rate;
 
-  public:
-    Schedule(time_t start, float rate, int32_t minutes);
+ public:
+    Schedule(uint16_t index, time_t start, int16_t rate);
     Schedule(float rate, int32_t minutes);
     Schedule();
     ~Schedule();
-    int32_t getMinutes();
-    int32_t getRate();
-    int32_t getIndex();
-    time_t  getStart();
-    int32_t NowMinutes();
-
+    int32_t getIndex() const;
+    time_t getStart() const;
+    int32_t getRate() const;
+    static int32_t NowMinutes();
 };
 
-#endif
+}  // namespace profile
+
+#endif  // LIB_UTILITIES_SCHEDULE_H_

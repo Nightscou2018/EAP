@@ -1,5 +1,4 @@
 set(EAPlib_sources
-  ${CMAKE_CURRENT_SOURCE_DIR}/profile/profile.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/utilities/schedule.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/profile/basal/helper.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/profile/basal/basal.cpp

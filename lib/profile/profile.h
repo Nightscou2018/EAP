@@ -1,9 +1,15 @@
-#ifndef LIB_PROFILE_H
-#define LIB_PROFILE_H
+// Copyright 2018 Rick van Schijndel
 
-class Profile {
-  public:
-    Profile();
+#ifndef LIB_PROFILE_PROFILE_H_
+#define LIB_PROFILE_PROFILE_H_
+
+#include "profile/basal/basal.h"
+
+namespace profile {
+struct Profile {
+  Schedule schedule;
 };
 
-#endif /* LIB_PROFILE_H */
+}  // namespace profile
+
+#endif  // LIB_PROFILE_PROFILE_H_

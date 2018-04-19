@@ -1,26 +1,17 @@
-#include "schedule.h"
+// Copyright 2018 Elviro Junior and Rick van Schijndel
 
-int32_t Schedule::index = 0;
+#include "utilities/schedule.h"
 
-Schedule::Schedule(time_t start, float rate, int32_t minutes)
-:rate(rate),minutes(minutes),start(start)
-{
-  index++;
-}
+namespace profile {
 
-Schedule::Schedule(float rate, int32_t minutes)
-:rate(rate),minutes(minutes)
-{
-  start = NowMinutes();
-  index++;
-}
+Schedule::Schedule(uint16_t index, time_t start, int16_t rate)
+  : index(index), start(start), rate(rate) {}
 
-Schedule::Schedule(){}
+Schedule::Schedule() {}
 
-Schedule::~Schedule(){}
+Schedule::~Schedule() {}
 
-int32_t Schedule::NowMinutes(){
-
+int32_t Schedule::NowMinutes() {
   time_t now = time(0);
   struct tm * timee;
 
@@ -29,22 +20,16 @@ int32_t Schedule::NowMinutes(){
   return (timee -> tm_min);
 }
 
-int32_t Schedule::getMinutes()
-{
-  return minutes;
-}
-
-int32_t Schedule::getRate()
-{
-  return rate;
-}
-
-int32_t Schedule::getIndex()
-{
+int32_t Schedule::getIndex() const {
   return index;
 }
 
-time_t Schedule::getStart()
-{
+time_t Schedule::getStart() const {
   return start;
 }
+
+int32_t Schedule::getRate() const {
+  return rate;
+}
+
+}  // namespace profile
