@@ -17,7 +17,7 @@ int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
     return -1;
   }
 
-  // TODO: Get sorted schedule if necessary
+  // TODO(virus): Get sorted schedule if necessary
   auto basalProfileData = schedules;
   minutes = helper.Minutes(now);
   basalRate = basalProfileData.at(0)->getRate();
@@ -25,7 +25,6 @@ int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
   if (basalRate == 0.0) {
     return -1;
   }
-
 
   for (unsigned int i = 0; i < basalProfileData.size() - 1; ++i) {
     auto profile = basalProfileData.at(i);
@@ -39,7 +38,6 @@ int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
   }
   return -1;
 }
-
 
 int32_t MaxDailyBasal(const std::vector<Schedule*> &inputs) {
   if (inputs.size() <= 0) {
@@ -55,7 +53,6 @@ int32_t MaxDailyBasal(const std::vector<Schedule*> &inputs) {
 }
 
 // double MaxBasalLookup(){} //TODO: change input type
-
 
 }  // namespace basal
 }  // namespace profile

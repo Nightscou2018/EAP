@@ -1,5 +1,5 @@
-#include "radio.h"
+// Copyright 2018 Rick van Schijndel
 
-Radio::Radio() {
+#include "radio/radio.h"
 
-}
+Radio::Radio() {}
