@@ -28,7 +28,7 @@ int32_t LIB_PROFILE_BASAL_BASAL::BasalLookup(std::vector<Schedule*> schedules, t
       auto profile = basalProfileData.at(i);
       auto nextProfile = basalProfileData.at(i+1);
 
-      if ((minutes >= profile->getMinutes()) && (minutes < nextProfile->getMinutes())) {
+      if ((minutes >= profile->getMinutes()) && (minutes <= nextProfile->getMinutes())) {
         basalRate = profile->getRate();
         return round(basalRate * 1000) / 1000;
       }
