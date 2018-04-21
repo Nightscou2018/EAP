@@ -12,7 +12,6 @@
 
 
 namespace LIB_PROFILE_BASAL_BASAL {
-    // int32_t CompareMins(int32_t mins, int32_t profileMins, int32_t operation);
     int32_t BasalLookup(std::vector<Schedule*> schedules, time_t now);
     int32_t MaxDailyBasal(std::vector<Schedule*> inputs);
     int32_t MaxBasalLookup(std::vector<Schedule*> inputs);

@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "basal.h"
 #include "helper.h"
-#include <iostream>
+
 
 using namespace LIB_PROFILE_BASAL_BASAL;
 
@@ -23,9 +23,7 @@ TEST(TestBasalLookUp, NullTime) {
   const char * start1 = "23:59:00";
 
   time_t startMin  = helper.StringToTime(start);
-  std::cout << "start time is now : " << helper.Minutes(startMin) << std::endl;
   time_t start2Min = helper.StringToTime(start1);
-  std::cout << "start2 time is now : " << helper.Minutes(start2Min) << std::endl;
   time_t getAtTime = 0;
 
   int32_t result;

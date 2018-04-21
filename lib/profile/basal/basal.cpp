@@ -1,5 +1,5 @@
 #include "basal.h"
-#include <iostream>
+
 int32_t LIB_PROFILE_BASAL_BASAL::BasalLookup(std::vector<Schedule*> schedules, time_t givenTime) {
     Helper helper;
     float basalRate;
@@ -11,7 +11,6 @@ int32_t LIB_PROFILE_BASAL_BASAL::BasalLookup(std::vector<Schedule*> schedules, t
 
     if (givenTime == 0) {
         givenTime = time(0);
-        std::cout << "given time is now : " << helper.Minutes(givenTime) << std::endl;
     }
 
     // TODO(virus): Get sorted schedule if necessary
@@ -28,8 +27,6 @@ int32_t LIB_PROFILE_BASAL_BASAL::BasalLookup(std::vector<Schedule*> schedules, t
     for (unsigned int i = 0; i < basalProfileData.size() - 1; ++i) {
       auto profile = basalProfileData.at(i);
       auto nextProfile = basalProfileData.at(i+1);
-      //auto entryHigh = CompareMins(minutes, profile->getMinutes(), 0);
-      //auto entryLow  = CompareMins(minutes, nextProfile->getMinutes(), 1);
 
       if ((minutes >= profile->getMinutes()) && (minutes <= nextProfile->getMinutes())) {
         basalRate = profile->getRate();

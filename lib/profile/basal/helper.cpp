@@ -1,5 +1,4 @@
 #include "helper.h"
-#include <iostream>
 
 Helper::Helper() {}
 
@@ -9,12 +8,8 @@ Helper::~Helper() {
     }
 }
 
-/* TODO(virus): test this function since is now returning the total
-                amount of minutes with the hour
-*/
 int32_t Helper::Minutes(time_t givenTime) {
   if (givenTime == 0) {
-    std::cout << "given time is now : " << "0" << std::endl;
     return -1;
   }
 
@@ -31,6 +26,16 @@ time_t Helper::StringToTime(const char * givenTime) {
 
   return nowConverted;
 }
+
+// int32_t CompareMins(int32_t mins, int32_t profileMins, int32_t option){
+//   if (option == 0) {
+//     return (mins >= profileMins) ? 0 : -1;
+//   } else if (option == 1) {
+//     return (mins <= profileMins) ? 0 : -1;
+//   } else {
+//     return -1;
+//   }
+// }
 
 void Helper::AddToSchedule(const char * start, float rate, int32_t minutes) {
   time_t begining =  StringToTime(start);
