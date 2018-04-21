@@ -24,7 +24,7 @@ TEST(TestBasalLookUp, NullGivenTime) {
 
   time_t startMin  = helper.StringToTime(start);
   time_t start2Min = helper.StringToTime(start1);
-  time_t givenTime;
+  time_t givenTime = 0;
 
   int32_t result;
 
