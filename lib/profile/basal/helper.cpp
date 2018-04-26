@@ -2,6 +2,9 @@
 
 #include "profile/basal/helper.h"
 
+namespace profile {
+namespace basal {
+
 Helper::Helper() {}
 
 Helper::~Helper() {
@@ -18,21 +21,31 @@ int32_t Helper::Minutes(const time_t givenTime) {
   struct tm * timee;
   timee = gmtime(&givenTime);
 
-  return (timee -> tm_min);
+  return ((timee->tm_hour * 60) + timee->tm_min);
 }
 
-time_t Helper::StringToTime(const char * now) {
+time_t Helper::StringToTime(const char * givenTime) {
   struct tm tm;
-  strptime(now, "%H:%M:%S", &tm);
-  time_t nowConverted = mktime(&tm);
+  strptime(givenTime, "%H:%M:%S", &tm);
+  time_t givenTimeConverted = mktime(&tm);
 
-  return nowConverted;
+  return givenTimeConverted;
 }
 
-void Helper::AddToSchedule(const char * start, float rate, int32_t minutes) {
-  time_t begining =  StringToTime(start);
+int32_t Helper::CompareMins(int32_t mins, int32_t profileMins, int32_t option) {
+  if (option == 0) {
+    return (mins >= profileMins) ? 0 : -1;
+  } else if (option == 1) {
+    return (mins <= profileMins) ? 0 : -1;
+  } else {
+    return -1;
+  }
+}
+
+void Helper::AddToSchedule(const time_t start, float rate) {
+  int new_index = schedule.size();
   profile::Schedule* scheduleItem =
-    new profile::Schedule(begining, rate, minutes);
+    new profile::Schedule(new_index, start, rate);
   schedule.push_back(scheduleItem);
 }
 
@@ -44,3 +57,6 @@ std::vector<profile::Schedule*> Helper::SortSchedule(
 std::vector<profile::Schedule*> Helper::GetSchedule() {
   return schedule;
 }
+
+}  // namespace basal
+}  // namespace profile

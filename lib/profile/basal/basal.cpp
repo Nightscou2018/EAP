@@ -1,10 +1,11 @@
 // Copyright 2018 Elviro Junior and Rick van Schijndel
 #include "profile/basal/basal.h"
+#include <iostream>
 
 namespace profile {
 namespace basal {
 
-int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
+int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t givenTime) {
   Helper helper;
   float basalRate;
   int32_t minutes;
@@ -13,13 +14,13 @@ int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
     return -1;
   }
 
-  if (now == 0) {
+  if (givenTime == 0) {
     return -1;
   }
 
   // TODO(virus): Get sorted schedule if necessary
   auto basalProfileData = schedules;
-  minutes = helper.Minutes(now);
+  minutes = helper.Minutes(givenTime);
   basalRate = basalProfileData.at(0)->getRate();
 
   if (basalRate == 0.0) {
@@ -27,12 +28,13 @@ int32_t BasalLookup(const std::vector<Schedule*> &schedules, const time_t now) {
   }
 
   for (unsigned int i = 0; i < basalProfileData.size() - 1; ++i) {
-    auto profile = basalProfileData.at(i);
-    auto nextProfile = basalProfileData.at(i+1);
+    auto schedule = basalProfileData.at(i);
+    auto nextSchedule = basalProfileData.at(i+1);
 
-    if ((minutes >= profile->getStart())
-        && (minutes <= nextProfile->getStart())) {
-      basalRate = profile->getRate();
+    if ((minutes >= schedule->getMinutes())
+        && (minutes <= nextSchedule->getMinutes())) {
+      basalRate = schedule->getRate();
+      std::cout << basalRate << std::endl;
       return round(basalRate * 1000) / 1000;
     }
   }

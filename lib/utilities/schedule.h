@@ -10,19 +10,18 @@ namespace profile {
 
 class Schedule {
  private:
-    uint16_t index;
-    time_t start;
+    int32_t index;
     int32_t rate;
+    time_t start;
 
  public:
-    Schedule(uint16_t index, time_t start, int16_t rate);
-    Schedule(float rate, int32_t minutes);
+    Schedule(int32_t index, time_t start, float rate);
     Schedule();
     ~Schedule();
-    int32_t getIndex() const;
-    time_t getStart() const;
+    int32_t getMinutes() const;
     int32_t getRate() const;
-    static int32_t NowMinutes();
+    int32_t getIndex() const;
+    time_t  getStart() const;
 };
 
 }  // namespace profile

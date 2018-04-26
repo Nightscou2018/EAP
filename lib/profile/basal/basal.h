@@ -5,8 +5,8 @@
 
 #include <math.h>
 #include <inttypes.h>
+#include <cmath>
 #include <algorithm>
-#include <string>
 #include <vector>
 #include <ctime>
 #include "utilities/schedule.h"

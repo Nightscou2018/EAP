@@ -1,24 +1,16 @@
 // Copyright 2018 Elviro Junior and Rick van Schijndel
 
 #include "utilities/schedule.h"
+#include "profile/basal/helper.h"
 
 namespace profile {
 
-Schedule::Schedule(uint16_t index, time_t start, int16_t rate)
-  : index(index), start(start), rate(rate) {}
+Schedule::Schedule(int32_t index, time_t start, float rate)
+:index(index), rate(rate), start(start) {}
 
 Schedule::Schedule() {}
 
 Schedule::~Schedule() {}
-
-int32_t Schedule::NowMinutes() {
-  time_t now = time(0);
-  struct tm * timee;
-
-  timee = gmtime(&now);
-
-  return (timee -> tm_min);
-}
 
 int32_t Schedule::getIndex() const {
   return index;
@@ -30,6 +22,11 @@ time_t Schedule::getStart() const {
 
 int32_t Schedule::getRate() const {
   return rate;
+}
+
+int32_t Schedule::getMinutes() const {
+  basal::Helper helper;
+  return helper.Minutes(start);
 }
 
 }  // namespace profile
