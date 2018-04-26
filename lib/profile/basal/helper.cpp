@@ -1,4 +1,9 @@
-#include "helper.h"
+// Copyright 2018 EAP
+
+#include "profile/basal/helper.h"
+
+namespace profile {
+namespace basal {
 
 Helper::Helper() {}
 
@@ -8,7 +13,7 @@ Helper::~Helper() {
     }
 }
 
-int32_t Helper::Minutes(time_t givenTime) {
+int32_t Helper::Minutes(const time_t givenTime) {
   if (givenTime == 0) {
     return -1;
   }
@@ -22,31 +27,36 @@ int32_t Helper::Minutes(time_t givenTime) {
 time_t Helper::StringToTime(const char * givenTime) {
   struct tm tm;
   strptime(givenTime, "%H:%M:%S", &tm);
-  time_t nowConverted = mktime(&tm);
+  time_t givenTimeConverted = mktime(&tm);
 
-  return nowConverted;
+  return givenTimeConverted;
 }
 
-// int32_t CompareMins(int32_t mins, int32_t profileMins, int32_t option){
-//   if (option == 0) {
-//     return (mins >= profileMins) ? 0 : -1;
-//   } else if (option == 1) {
-//     return (mins <= profileMins) ? 0 : -1;
-//   } else {
-//     return -1;
-//   }
-// }
+int32_t Helper::CompareMins(int32_t mins, int32_t profileMins, int32_t option) {
+  if (option == 0) {
+    return (mins >= profileMins) ? 0 : -1;
+  } else if (option == 1) {
+    return (mins <= profileMins) ? 0 : -1;
+  } else {
+    return -1;
+  }
+}
 
-void Helper::AddToSchedule(const char * start, float rate, int32_t minutes) {
-  time_t begining =  StringToTime(start);
-  Schedule* scheduleItem = new Schedule(begining, rate, minutes);
+void Helper::AddToSchedule(const time_t start, float rate) {
+  int new_index = schedule.size();
+  profile::Schedule* scheduleItem =
+    new profile::Schedule(new_index, start, rate);
   schedule.push_back(scheduleItem);
 }
 
-std::vector<Schedule*> Helper::SortSchedule(std::vector<Schedule*> scheduleToSort) {
+std::vector<profile::Schedule*> Helper::SortSchedule(
+    std::vector<profile::Schedule*> *scheduleTosort) {
   return schedule;
 }
 
-std::vector<Schedule*> Helper::GetSchedule() {
+std::vector<profile::Schedule*> Helper::GetSchedule() {
   return schedule;
 }
+
+}  // namespace basal
+}  // namespace profile

@@ -1,39 +1,32 @@
-#include "schedule.h"
+// Copyright 2018 EAP
 
-Schedule::Schedule(int32_t index, time_t start, float rate, int32_t minutes)
-:index(index), rate(rate), minutes(minutes), start(start) {}
+#include "utilities/schedule.h"
+#include "profile/basal/helper.h"
 
+namespace profile {
 
-Schedule::Schedule(int32_t index, float rate, int32_t minutes)
-:index(index), rate(rate), minutes(minutes) {
-  start = NowMinutes();
-}
+Schedule::Schedule(int32_t index, time_t start, float rate)
+:index(index), rate(rate), start(start) {}
 
 Schedule::Schedule() {}
 
 Schedule::~Schedule() {}
 
-int32_t Schedule::NowMinutes() {
-  time_t now = time(0);
-  struct tm * timee;
-
-  timee = gmtime(&now);
-
-  return ((timee->tm_hour * 60) + timee->tm_min);
-}
-
-int32_t Schedule::getMinutes() {
-  return minutes;
-}
-
-int32_t Schedule::getRate() {
-  return rate;
-}
-
-int32_t Schedule::getIndex() {
+int32_t Schedule::getIndex() const {
   return index;
 }
 
-time_t Schedule::getStart() {
+time_t Schedule::getStart() const {
   return start;
 }
+
+int32_t Schedule::getRate() const {
+  return rate;
+}
+
+int32_t Schedule::getMinutes() const {
+  basal::Helper helper;
+  return helper.Minutes(start);
+}
+
+}  // namespace profile

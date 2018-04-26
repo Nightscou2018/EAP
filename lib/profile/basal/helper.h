@@ -1,3 +1,5 @@
+// Copyright 2018 EAP
+
 #ifndef LIB_PROFILE_BASAL_HELPER_H_
 #define LIB_PROFILE_BASAL_HELPER_H_
 
@@ -7,20 +9,25 @@
 #include <string>
 #include <ctime>
 
+#include "utilities/schedule.h"
 
-#include "schedule.h"
+namespace profile {
+namespace basal {
 
-class Helper{
+class Helper {
  public:
-      Helper();
-      ~Helper();
-      std::vector<Schedule*> schedule;
-      int32_t Minutes(time_t givenTime);
-      time_t StringToTime(const char * now);
-      int32_t CompareMins(int32_t&, int32_t&, int32_t&);
-      void AddToSchedule(const char * start, float rate, int32_t minutes);
-      std::vector<Schedule*> SortSchedule(std::vector<Schedule*> schedule);
-      std::vector<Schedule*> GetSchedule();
+  Helper();
+  ~Helper();
+  std::vector<profile::Schedule*> schedule;
+  int32_t Minutes(const time_t givenTime);
+  time_t StringToTime(const char * now);
+  void AddToSchedule(const time_t start, float rate);
+  int32_t CompareMins(int32_t mins, int32_t profileMins, int32_t option);
+  std::vector<profile::Schedule*> SortSchedule(std::vector<profile::Schedule*> *schedule);
+  std::vector<profile::Schedule*> GetSchedule();
 };
+
+}  // namespace basal
+}  // namespace profile
 
 #endif  // LIB_PROFILE_BASAL_HELPER_H_

@@ -10,10 +10,8 @@ endif()
 
 # set common include folder for module
 set(COMMON_INCLUDES
-  ${PROJECT_SOURCE_DIR}/lib/validation
-  ${PROJECT_SOURCE_DIR}/lib/profile/basal
-  ${PROJECT_SOURCE_DIR}/lib/utilities
-  )
+  ${PROJECT_SOURCE_DIR}/lib/
+)
 
 MESSAGE(STATUS "COMMON_INCLUDES: " ${COMMON_INCLUDES})
 

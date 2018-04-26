@@ -1,153 +1,113 @@
-#include <inttypes.h>
+// Copyright 2018 EAP
+
 #include "gtest/gtest.h"
-#include "basal.h"
-#include "helper.h"
-
-
-using namespace LIB_PROFILE_BASAL_BASAL;
+#include "profile/basal/basal.h"
+#include "profile/basal/helper.h"
 
 TEST(TestBasalLookUp, NullSchedule) {
-  Helper helper;
+  profile::basal::Helper helper;
   time_t givenTime = time(0);
   int32_t result;
-  result = BasalLookup(helper.GetSchedule(), givenTime);
+  result = profile::basal::BasalLookup(helper.GetSchedule(), givenTime);
 
   EXPECT_EQ(result, -1);
 }
 
+TEST(TestBasalLookUp, NullTime) {
+  profile::basal::Helper helper;
 
-TEST(TestBasalLookUp, NullGivenTime) {
-  Helper helper;
+  const char * start = "00:00:00";
+  const char * start1 = "11:59:00";
 
-  const char * start  = "01:00:00";
-  const char * start1 = "23:59:00";
-
-  time_t startMin  = helper.StringToTime(start);
-  time_t start2Min = helper.StringToTime(start1);
   time_t givenTime = 0;
 
   int32_t result;
 
-  helper.AddToSchedule(start, 5, helper.Minutes(startMin));
-  helper.AddToSchedule(start1, 2, helper.Minutes(start2Min));
+  helper.AddToSchedule(helper.StringToTime(start), 5);
+  helper.AddToSchedule(helper.StringToTime(start1), 2);
 
-  result = BasalLookup(helper.GetSchedule(), givenTime);
+  result = profile::basal::BasalLookup(helper.GetSchedule(), givenTime);
 
-  EXPECT_EQ(result, 5);
+  EXPECT_EQ(result, -1);
 }
 
 TEST(TestBasalLookUp, BadSchedule) {
-  Helper helper;
+  profile::basal::Helper helper;
 
-  const char * start  = "10:20:00";
+  const char * start = "10:20:00";
   const char * nowStr = "10:45:00";
 
   time_t givenTime = helper.StringToTime(nowStr);
-  time_t startMin  = helper.StringToTime(start);
 
   int32_t result;
 
-  helper.AddToSchedule(start, 0.0, helper.Minutes(startMin));
+  helper.AddToSchedule(helper.StringToTime(start), 0.0);
 
-  result = BasalLookup(helper.GetSchedule(), givenTime);
+  result = profile::basal::BasalLookup(helper.GetSchedule(), givenTime);
 
   EXPECT_EQ(result, -1);
 }
 
 TEST(TestBasalLookUp, BasalGivenTime) {
-  Helper helper;
+  profile::basal::Helper helper;
 
   const char * start  = "10:00:00";
   const char * start1 = "10:20:00";
   const char * start2 = "10:25:00";
   const char * start3 = "10:30:00";
+
   const char * nowStr = "10:29:00";
 
-  time_t startMin  = helper.StringToTime(start);
-  time_t start1Min = helper.StringToTime(start1);
-  time_t start2Min = helper.StringToTime(start2);
-  time_t start3Min = helper.StringToTime(start3);
   time_t givenTime = helper.StringToTime(nowStr);
 
-  helper.AddToSchedule(start , 5, helper.Minutes(startMin));
-  helper.AddToSchedule(start1 , 2, helper.Minutes(start1Min));
-  helper.AddToSchedule(start2 , 15, helper.Minutes(start2Min));
-  helper.AddToSchedule(start3 , 1, helper.Minutes(start3Min));
+  helper.AddToSchedule(helper.StringToTime(start), 5);
+  helper.AddToSchedule(helper.StringToTime(start1), 2);
+  helper.AddToSchedule(helper.StringToTime(start2), 15);
+  helper.AddToSchedule(helper.StringToTime(start3), 1);
 
-  int32_t result = BasalLookup(helper.GetSchedule(), givenTime);
+  int32_t result = profile::basal::BasalLookup(helper.GetSchedule(), givenTime);
 
   EXPECT_EQ(result, 15);
 }
 
 TEST(TestBasalLookUp, MinutesBiggerThanLastLog) {
-  Helper helper;
+  profile::basal::Helper helper;
 
-  const char * start  = "10:00:00";
+  const char * start = "10:00:00";
   const char * start1 = "10:20:00";
   const char * nowStr = "10:21:00";
 
-  time_t givenTime = helper.StringToTime(nowStr);
-  time_t startMin  = helper.StringToTime(start);
-  time_t start1Min = helper.StringToTime(start1);
+  time_t now = helper.StringToTime(nowStr);
 
-  helper.AddToSchedule(start , 5, helper.Minutes(startMin));
-  helper.AddToSchedule(start1 , 2, helper.Minutes(start1Min));
+  helper.AddToSchedule(helper.StringToTime(start), 5);
+  helper.AddToSchedule(helper.StringToTime(start1), 2);
 
-  int32_t result = BasalLookup(helper.GetSchedule(), givenTime);
+  int32_t result = profile::basal::BasalLookup(helper.GetSchedule(), now);
 
   EXPECT_EQ(result, -1);
 }
 
-TEST(TestBasalLookUp, TimeLogsWithSeconds) {
-  Helper helper;
-
-  const char * start  = "10:01:10";
-  const char * start1 = "10:02:20";
-  const char * start2 = "10:03:30";
-  const char * start3 = "10:04:31";
-  const char * nowStr = "10:01:20";
-
-  time_t startMin  = helper.StringToTime(start);
-  time_t start1Min = helper.StringToTime(start1);
-  time_t start2Min = helper.StringToTime(start2);
-  time_t start3Min = helper.StringToTime(start3);
-  time_t givenTime = helper.StringToTime(nowStr);
-
-  helper.AddToSchedule(start , 5, helper.Minutes(startMin));
-  helper.AddToSchedule(start1 , 2, helper.Minutes(start1Min));
-  helper.AddToSchedule(start2 , 15, helper.Minutes(start2Min));
-  helper.AddToSchedule(start3 , 1, helper.Minutes(start3Min));
-
-  int32_t result = BasalLookup(helper.GetSchedule(), givenTime);
-  EXPECT_EQ(result, 5);
-}
-
 TEST(TestMaxDailyBasal, emptyInput) {
-  Helper helper;
-  int32_t result = MaxDailyBasal(helper.GetSchedule());
+  profile::basal::Helper helper;
+  int32_t result = profile::basal::MaxDailyBasal(helper.GetSchedule());
 
   EXPECT_EQ(result, -1);
 }
 
 TEST(TestMaxDailyBasal, CorrectInput) {
-  Helper helper;
+  profile::basal::Helper helper;
 
-  const char * start  = "10:00:00";
+  const char * start = "10:00:00";
   const char * start1 = "10:20:00";
   const char * start2 = "10:25:00";
   const char * start3 = "10:30:00";
 
-  time_t startMin  = helper.StringToTime(start);
-  time_t start1Min = helper.StringToTime(start1);
-  time_t start2Min = helper.StringToTime(start2);
-  time_t start3Min = helper.StringToTime(start3);
+  helper.AddToSchedule(helper.StringToTime(start), 5);
+  helper.AddToSchedule(helper.StringToTime(start1), 2);
+  helper.AddToSchedule(helper.StringToTime(start2), 15);
+  helper.AddToSchedule(helper.StringToTime(start3), 1);
 
-  helper.AddToSchedule(start , 5, helper.Minutes(startMin));
-  helper.AddToSchedule(start1 , 2, helper.Minutes(start1Min));
-  helper.AddToSchedule(start2 , 15, helper.Minutes(start2Min));
-  helper.AddToSchedule(start3 , 1, helper.Minutes(start3Min));
-
-  int32_t result = MaxDailyBasal(helper.GetSchedule());
+  int32_t result = profile::basal::MaxDailyBasal(helper.GetSchedule());
 
   EXPECT_EQ(result, 15);
 }

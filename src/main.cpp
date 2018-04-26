@@ -1,9 +1,7 @@
+// Copyright 2018 EAP
+
 #include <Arduino.h>
 
-void loop() {
+void loop() {}
 
-}
-
-void setup() {
-  
-}
+void setup() {}

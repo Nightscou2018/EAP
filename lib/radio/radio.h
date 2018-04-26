@@ -1,9 +1,11 @@
-#ifndef LIB_RADIO_H
-#define LIB_RADIO_H
+// Copyright 2018 EAP
+
+#ifndef LIB_RADIO_RADIO_H_
+#define LIB_RADIO_RADIO_H_
 
 class Radio {
-  public:
+ public:
     Radio();
 };
 
-#endif /* LIB_RADIO_H */
+#endif  // LIB_RADIO_RADIO_H_

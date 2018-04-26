@@ -1,16 +1,14 @@
-#include "crc.h"
+// Copyright 2018 EAP
 
-namespace Validation
-{
+#include "validation/crc.h"
 
-static uint8_t reflect(const uint8_t input)
-{
+namespace validation {
+
+static uint8_t reflect(const uint8_t input) {
   uint8_t residue = 0;
 
-  for(uint8_t i = 0; i < sizeof(uint8_t) * 8; i++)
-  {
-    if(input & (1 << i))
-    {
+  for (uint8_t i = 0; i < sizeof(uint8_t) * 8; i++) {
+    if (input & (1 << i)) {
       residue |= 1 << (7 - i);
     }
   }
@@ -48,16 +46,13 @@ static const uint8_t crcTable[]  {
 * hashsize    = 8
 */
 
-uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count)
-{
-  if(data == nullptr)
-  {
+uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count) {
+  if (data == nullptr) {
     return 0;
   }
 
   uint8_t crc = 0x00;
-  for(uint8_t i = 0; i < count; i++)
-  {
+  for (uint8_t i = 0; i < count; i++) {
     uint8_t currByte = reflect(data[i]);
     crc ^= currByte;
     crc  = crcTable[crc];
@@ -66,4 +61,4 @@ uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count)
   return reflect(crc);
 }
 
-} // namespace validation
+}  // namespace validation

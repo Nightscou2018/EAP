@@ -1,6 +1,7 @@
-#ifndef LIB_PROFILE_TARGETS_TAEGETS_H_
-#define LIB_PROFILE_TARGETS_TAEGETS_H_
+// Copyright 2018 EAP
 
+#ifndef LIB_PROFILE_TARGETS_TARGETS_H_
+#define LIB_PROFILE_TARGETS_TARGETS_H_
 
 namespace TARGETS {
 
@@ -8,4 +9,4 @@ namespace TARGETS {
 
 }  // namespace TARGETS
 
-#endif  // LIB_PROFILE_TARGETS_TAEGETS_H_
+#endif  // LIB_PROFILE_TARGETS_TARGETS_H_

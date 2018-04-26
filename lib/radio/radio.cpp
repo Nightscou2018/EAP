@@ -1,5 +1,5 @@
-#include "radio.h"
+// Copyright 2018 EAP
 
-Radio::Radio() {
+#include "radio/radio.h"
 
-}
+Radio::Radio() {}
