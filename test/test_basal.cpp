@@ -1,4 +1,4 @@
-// Copyright 2018 Elviro Junior
+// Copyright 2018 EAP
 
 #include "gtest/gtest.h"
 #include "profile/basal/basal.h"

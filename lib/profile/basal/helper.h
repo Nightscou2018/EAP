@@ -1,4 +1,4 @@
-// Copyright 2018 Elviro Junior and Rick van Schijndel
+// Copyright 2018 EAP
 
 #ifndef LIB_PROFILE_BASAL_HELPER_H_
 #define LIB_PROFILE_BASAL_HELPER_H_

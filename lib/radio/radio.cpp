@@ -1,4 +1,4 @@
-// Copyright 2018 Rick van Schijndel
+// Copyright 2018 EAP
 
 #include "radio/radio.h"
 

@@ -1,4 +1,4 @@
-// Copyright 2018 Vincent Bosman
+// Copyright 2018 EAP
 
 #ifndef LIB_VALIDATION_CRC_H_
 #define LIB_VALIDATION_CRC_H_

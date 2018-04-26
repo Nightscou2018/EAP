@@ -1,4 +1,4 @@
-// Copyright 2018 Elviro Junior and Rick van Schijndel
+// Copyright 2018 EAP
 
 #include "utilities/schedule.h"
 #include "profile/basal/helper.h"

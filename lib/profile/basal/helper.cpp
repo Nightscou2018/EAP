@@ -1,4 +1,4 @@
-// Copyright 2018 Elvior Junior and Rick van Schijndel
+// Copyright 2018 EAP
 
 #include "profile/basal/helper.h"
 

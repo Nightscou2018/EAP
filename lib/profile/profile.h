@@ -1,4 +1,4 @@
-// Copyright 2018 Rick van Schijndel
+// Copyright 2018 EAP
 
 #ifndef LIB_PROFILE_PROFILE_H_
 #define LIB_PROFILE_PROFILE_H_

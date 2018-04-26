@@ -1,4 +1,4 @@
-// Copyright 2018 Vincent Bosman
+// Copyright 2018 EAP
 
 #include "validation/crc.h"
 
