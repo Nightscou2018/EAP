@@ -1,0 +1,14 @@
+@startuml
+
+title EAP - Component Diagram
+
+[pumpcommunication] -- communication
+[carelinktranslation] -- carelink
+[userprofile] -- profile
+[monitoring] -- monitor
+[prediction] -- predict
+
+[carelinktranslation] --> communication
+[control] --> carelink
+
+@enduml
