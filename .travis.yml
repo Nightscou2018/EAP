@@ -16,6 +16,6 @@ install:
     - platformio update
 
 script:
-  - cpplint --quiet --recursive lib --recursive src
+  - cpplint --quiet --recursive lib src
   - platformio run -s
   - mkdir build && cd build && cmake .. && make && ctest -V
