@@ -1,0 +1,37 @@
+@startuml
+
+title EAP - PumpCommunication
+
+class Packet {
+    - data: byte[]
+    + Packet(size: int, data: byte[])
+}
+
+class PumpConfiguration {
+    frequency: int
+    carelink_identifier: int
+}
+
+class Radio {
+    + Radio(configuration: PumpConfiguration)
+    + send(packet: Packet) : int
+    + receive() : Packet
+}
+
+class CRC {
+    + CRC8WCDMA(data: byte[], count: unsigned int) : uint8_t
+    - reflect(input: uint8_t) : uint8_t
+    - crcTable : byte[]
+}
+
+note bottom of PumpConfiguration
+This is part of the public interface
+end note
+
+note bottom of Packet
+This is part of the public interface
+end note
+
+Packet -> CRC
+
+@enduml

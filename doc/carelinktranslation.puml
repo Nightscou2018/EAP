@@ -1,0 +1,15 @@
+@startuml
+
+title EAP - CarelinkTranslation
+
+enum MessageTypes {
+    kProductInfo
+}
+
+class Command {
+    - packet: Packet
+}
+
+Command -> MessageTypes
+
+@enduml
