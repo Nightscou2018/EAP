@@ -1,0 +1,8 @@
+# ignore plantuml generated diagrams
+*.png
+*.svg
+
+# ignore generated document
+*.pdf
+*.html
+

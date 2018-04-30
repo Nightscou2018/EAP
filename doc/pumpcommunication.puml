@@ -1,37 +1,60 @@
 @startuml
 
+set namespaceSeparator ::
+
 title EAP - PumpCommunication
 
+namespace communication {
+
+class PumpCommunication {
+  + PumpCommunication(config: PumpConfiguration, radio: RadioInterface)
+  + init(): int
+  + send(packet: const Packet): int
+  + receive(Packet* packet): int
+  - radio: Radio
+}
+
 class Packet {
-    - data: byte[]
-    + Packet(size: int, data: byte[])
+  - data: byte[]
+  + Packet(size: int, data: byte[])
+  + getData(): byte[]
+  + validate(): int
 }
 
 class PumpConfiguration {
-    frequency: int
-    carelink_identifier: int
+  + frequency: int
+}
+
+namespace radio {
+interface RadioInterface {
+  + send(packet: Packet)
+  + receive(Packet& packet): int
 }
 
 class Radio {
-    + Radio(configuration: PumpConfiguration)
-    + send(packet: Packet) : int
-    + receive() : Packet
+  + Radio(configuration: PumpConfiguration)
+  + send(packet: Packet): int
+  + receive(Packet& packet): int
+  - timeout: int
+  - retries: int
+}
 }
 
+namespace validation {
 class CRC {
-    + CRC8WCDMA(data: byte[], count: unsigned int) : uint8_t
-    - reflect(input: uint8_t) : uint8_t
-    - crcTable : byte[]
+  {static} + CRC8WCDMA(data: byte[], count: unsigned int): uint8_t
+  {static} - reflect(input: uint8_t): uint8_t
+  {static} - crcTable : byte[]
+}
 }
 
-note bottom of PumpConfiguration
-This is part of the public interface
-end note
+Packet -> communication::validation::CRC
+communication::radio::Radio o-- PumpConfiguration
+communication::radio::Radio -|> communication::radio::RadioInterface
+communication::radio::RadioInterface o-- Packet
+PumpCommunication *- communication::radio::RadioInterface
+PumpCommunication o- Packet
 
-note bottom of Packet
-This is part of the public interface
-end note
-
-Packet -> CRC
-
+}
 @enduml
+

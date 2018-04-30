@@ -2,14 +2,29 @@
 
 title EAP - CarelinkTranslation
 
+class CarelinkTranslation {
+  + CarelinkTranslation(config: CarelinkConfiguration)
+  + getFirmwareVersion(): int
+  + getPumpModel(): int
+  + setTempBasal(basal_rate: int): int
+  + getScheduledBasalRate(): int
+  + getTemporaryBasalRate(): int
+  + getISF(): int
+}
+
 enum MessageTypes {
-    kProductInfo
+  kFirmwareVersion
 }
 
 class Command {
-    - packet: Packet
+  - packet: Packet
+}
+
+class CarelinkConfiguration {
+  + carelink_identifier: int
 }
 
 Command -> MessageTypes
 
 @enduml
+

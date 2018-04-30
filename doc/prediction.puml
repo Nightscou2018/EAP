@@ -1,0 +1,9 @@
+@startuml
+
+class Prediction {
+  + predictGlucose()
+  + predictISF()
+}
+
+@enduml
+
