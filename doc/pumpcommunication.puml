@@ -6,7 +6,7 @@ title EAP - PumpCommunication
 
 namespace communication {
 
-namespace protocol{
+namespace protocol {
 class CarelinkTranslation {
   - radio: unique_ptr<RadioInterface>
   + CarelinkTranslation(config: CarelinkConfiguration)
@@ -22,32 +22,26 @@ enum MessageTypes {
   kFirmwareVersion
 }
 
-class Command {
-  - packet: Packet
-}
-
 class CarelinkConfiguration {
   + carelink_identifier: int
 }
-
-Command -> MessageTypes
-
 }
 
 namespace raw {
 
 class RequestPacket {
-  - data: byte[]
-  - maxRetries: int
+  + RequestPacket<length>(data: array<byte, length>, max_retries: int)
+  - m_data: array<byte, length>
+  - m_max_retries: int
+  + maxRetries() const: int
+  + getData() const: array<byte, length>
 }
 
 class ResponsePacket {
-  - data: byte[]
-  - maxRetries: int
-  + Packet(size: int, data: byte[])
-  + getData() const: byte[]
+  + ResponsePacket<length>(data: array<byte, length>)
+  - m_data: array<byte, length>
+  + getData() const: array<byte, length>
   + validate() const: int
-  + maxRetries() const: int
 }
 
 class PumpConfiguration {
@@ -55,17 +49,20 @@ class PumpConfiguration {
 }
 
 interface RadioInterface {
-  + send(packet: const Packet&): int
-  + receive(packet: Packet*): int
+  + request(request_packet: const RequestPacket&, response: ResponsePacket*): int
   + init(): int
-  + wakeUp(): 
+  + wakeUp(): int
+  + sleep(): int
 }
 
 class Radio {
-  + Radio(configuration: PumpConfiguration)
+  + Radio(configuration: struct PumpConfiguration)
   - timeout: int
   - retries: int
-  - readConfiguration(): void
+}
+
+class PumpConfigurationReader {
+  + readConfiguration(config: struct PumpConfiguration*): int
 }
 
 namespace validation {
@@ -75,13 +72,17 @@ class CRC {
   {static} - crcTable : byte[]
 }
 }
+
+RadioInterface o-- ResponsePacket
+RadioInterface o-- RequestPacket
+Radio -|> RadioInterface
+Radio o-- PumpConfiguration
 }
 
-communication::raw::Packet -> communication::raw::validation::CRC
-communication::raw::Radio o-- communication::raw::PumpConfiguration
-communication::raw::Radio -|> communication::raw::RadioInterface
-communication::raw::RadioInterface o-- communication::raw::Packet
+communication::raw::RequestPacket --> communication::raw::validation::CRC
+communication::raw::ResponsePacket -> communication::raw::validation::CRC
 communication::protocol::CarelinkTranslation *-- communication::raw::RadioInterface
 
 }
 @enduml
+
