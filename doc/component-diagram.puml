@@ -3,13 +3,13 @@
 title EAP - Component Diagram
 
 [instructor]
-[pumpcommunication] -- resultCommunication
+[pumpcommunication] -- infoCommunication
 [pumpcommunication] -- commandCommunication
 [monitoring] - monitor
 [prediction] - predict
 
 
-[monitoring] --> resultCommunication
+[monitoring] --> infoCommunication
 [prediction] --> monitor
 [instructor] --> predict
 [instructor] --> commandCommunication
