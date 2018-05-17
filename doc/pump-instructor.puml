@@ -4,7 +4,7 @@ namespace instructor {
 class Instructor {
   - predictor: unique_ptr<Predictor>
   + Instructor(predictor: Predictor)
-  + instructionLoop(): void
+  + loop(): void
 }
 }
 
