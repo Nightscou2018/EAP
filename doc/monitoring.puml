@@ -2,8 +2,11 @@
 
 title EAP - monitoring
 
-class Monitoring {
-
+class Monitor {
+  + Monitor(communication_layer: CarelinkTranslation)
+  - carelink: unique_ptr<CarelinkTranslation>
+  + getGlucoseLevelAtTime(time: time_t): int
+  - getHistory(page: int): data[]
 }
 
 @enduml

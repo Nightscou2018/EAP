@@ -2,18 +2,16 @@
 
 title EAP - Component Diagram
 
-[pumpcommunication] -- communication
-[pumpcommunication] - pumpconfiguration
-[carelinktranslation] - carelink
+[instructor]
+[pumpcommunication] -- resultCommunication
+[pumpcommunication] -- commandCommunication
 [monitoring] - monitor
 [prediction] - predict
-[controlling] - control
 
-[carelinktranslation] --> communication
-[monitoring] --> carelink
+
+[monitoring] --> resultCommunication
 [prediction] --> monitor
-[controlling] --> predict
-[controlling] --> carelink
-
+[instructor] --> predict
+[instructor] --> commandCommunication
 
 @enduml
