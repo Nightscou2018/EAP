@@ -16,6 +16,8 @@ class CarelinkTranslation {
   + getScheduledBasalRate(): int
   + getTemporaryBasalRate(): int
   + getISF(): int
+  + getHistory(page: int): array<GlucoseLevel, length>
+
 }
 
 enum MessageTypes {

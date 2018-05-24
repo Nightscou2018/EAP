@@ -8,7 +8,7 @@ class Predictor {
 }
 
 class Profile {
-
+  
 }
 
 class ProfileLoader {

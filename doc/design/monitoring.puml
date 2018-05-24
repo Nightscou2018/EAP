@@ -6,7 +6,6 @@ class Monitor {
   + Monitor(communication_layer: CarelinkTranslation)
   - carelink: unique_ptr<CarelinkTranslation>
   + getGlucoseLevelAtTime(time: time_t): int
-  - getHistory(page: int): array<GlucoseLevel, length>
 }
 
 @enduml
