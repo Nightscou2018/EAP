@@ -1,7 +1,6 @@
 // Copyright 2018 EAP
-
-#ifndef LIB_VALIDATION_CRC_H_
-#define LIB_VALIDATION_CRC_H_
+#ifndef LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
+#define LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
 
 #include <inttypes.h>
 
@@ -13,4 +12,4 @@ namespace validation {
 uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count);
 
 }  // namespace validation
-#endif  // LIB_VALIDATION_CRC_H_
+#endif  // LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_

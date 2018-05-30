@@ -1,0 +1,25 @@
+Retrospective - EAP 3rd sprint
+
+The goal of the sprint was to have the device (EAP) communicate with the pump & implementation of profile
+
+good:
+
+- Enforced code reviews;
+- We are happy with our defeniton of done, because it helped us deliver better code in this sprint; 
+- Taks were palnned well within this sprint
+
+Bad:
+
+- We lost time with design task within the sprint when they were not planned before;  
+- time was wasted fixing style issue which wasn't in the sprint scope;
+- include plan for reflection;
+- we didn't review the original design as a team;
+- we started the project without a design which led to different interpretations among the team;
+
+Improvements:
+
+- more time boxing
+- team members availability  
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
