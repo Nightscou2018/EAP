@@ -5,7 +5,6 @@
 #include <inttypes.h>
 
 namespace validation {
-
   /*! \brief performs a crc on data
    *   the CRC is 8 bits wide, according to the WCDMA standard
    */
