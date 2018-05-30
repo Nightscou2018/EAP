@@ -2,7 +2,7 @@
 
 #include <inttypes.h>
 #include "gtest/gtest.h"
-#include "validation/crc.h"
+#include "communication/raw/validation/crc.h"
 
 TEST(TestCRC, OnlyZero) {
   uint8_t input = 0x00;
