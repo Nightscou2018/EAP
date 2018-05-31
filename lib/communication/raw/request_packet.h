@@ -10,16 +10,16 @@
 namespace communication {
 namespace raw {
 
-template <size_t length>
+static const size_t packet_length = 64;
 
 class RequestPacket {
  public:
-  RequestPacket<length>(std::array<uint32_t, length> data, int max_retries);
+  RequestPacket(std::array<uint32_t, packet_length> data, int max_retries);
   ~RequestPacket();
   int const MaxRetries();
-  std::array<uint32_t, length> const GetData();
+  std::array<uint32_t, packet_length> const GetData();
  private:
-  std::array<uint32_t, length> m_data;
+  std::array<uint32_t, packet_length> m_data;
   int m_max_retries;
 };
 

@@ -11,7 +11,7 @@ namespace raw {
 
 class IRadio {
  public:
-  virtual int request(const RequestPacket& request_packet, ResponsePacket* response) = 0;
+  virtual int Request(const RequestPacket& request_packet, ResponsePacket* response) = 0;
   virtual ~IRadio() {}
   virtual int Init() = 0;
   virtual int WakeUp() = 0;

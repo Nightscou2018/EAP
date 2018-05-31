@@ -3,7 +3,7 @@
 #ifndef LIB_COMMUNICATION_RAW_RADIO_H_
 #define LIB_COMMUNICATION_RAW_RADIO_H_
 
-#include "IRadio.h"
+#include "iradio.h"
 
 namespace communication {
 namespace raw {
