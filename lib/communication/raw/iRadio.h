@@ -3,17 +3,19 @@
 #ifndef LIB_COMMUNICATION_RAW_IRADIO_H_
 #define LIB_COMMUNICATION_RAW_IRADIO_H_
 
-#include "communication/raw/requestPacket.h"
-#include "communication/raw/responsePacket.h"
+#include "communication/raw/request_packet.h"
+#include "communication/raw/response_packet.h"
 
 namespace communication {
 namespace raw {
 
-class Iradio {
-virtual int request(const RequestPacket& request_packet, ResponsePacket* response) = 0;
-virtual int init() = 0;
-virtual int wakeUp() = 0;
-virtual int sleep() = 0;
+class IRadio {
+ public:
+  virtual int request(const RequestPacket& request_packet, ResponsePacket* response) = 0;
+  virtual ~IRadio() {}
+  virtual int Init() = 0;
+  virtual int WakeUp() = 0;
+  virtual int Sleep() = 0;
 };
 
 }  // namespace raw

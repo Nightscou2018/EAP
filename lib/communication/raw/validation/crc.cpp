@@ -4,7 +4,7 @@
 
 namespace validation {
 
-static uint8_t reflect(const uint8_t input) {
+uint8_t validation::CRC::Reflect(const uint8_t input) {
   uint8_t residue = 0;
 
   for (uint8_t i = 0; i < sizeof(uint8_t) * 8; i++) {
@@ -16,7 +16,7 @@ static uint8_t reflect(const uint8_t input) {
   return residue;
 }
 
-static const uint8_t crcTable[]  {
+static uint8_t crcTable[]  {
 0x00, 0x9B, 0xAD, 0x36, 0xC1, 0x5A, 0x6C, 0xF7, 0x19, 0x82, 0xB4, 0x2F, 0xD8, 0x43, 0x75, 0xEE,
 0x32, 0xA9, 0x9F, 0x04, 0xF3, 0x68, 0x5E, 0xC5, 0x2B, 0xB0, 0x86, 0x1D, 0xEA, 0x71, 0x47, 0xDC,
 0x64, 0xFF, 0xC9, 0x52, 0xA5, 0x3E, 0x08, 0x93, 0x7D, 0xE6, 0xD0, 0x4B, 0xBC, 0x27, 0x11, 0x8A,
@@ -46,19 +46,19 @@ static const uint8_t crcTable[]  {
 * hashsize    = 8
 */
 
-uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count) {
+uint8_t validation::CRC::CRC8WCDMA(const uint8_t data[], unsigned int count) {
   if (data == nullptr) {
     return 0;
   }
 
   uint8_t crc = 0x00;
   for (uint8_t i = 0; i < count; i++) {
-    uint8_t currByte = reflect(data[i]);
+    uint8_t currByte = validation::CRC::Reflect(data[i]);
     crc ^= currByte;
     crc  = crcTable[crc];
   }
 
-  return reflect(crc);
+  return validation::CRC::Reflect(crc);
 }
 
 }  // namespace validation

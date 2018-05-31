@@ -3,14 +3,20 @@
 #ifndef LIB_COMMUNICATION_RAW_RADIO_H_
 #define LIB_COMMUNICATION_RAW_RADIO_H_
 
+#include "IRadio.h"
+
 namespace communication {
 namespace raw {
-class Radio {
+class Radio : public IRadio {
+ public:
+  explicit Radio(struct PumpConfiguration configuration);
+  ~Radio();
+
+ private:
   int timeOut;
   int retries;
-  explicit Radio(struct PumpConfiguration configuration);
 };
-}
-}
+}  // namespace raw
+}  // namespace communication
 
 #endif  // LIB_COMMUNICATION_RAW_RADIO_H_

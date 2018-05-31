@@ -5,10 +5,14 @@
 #include <inttypes.h>
 
 namespace validation {
-  /*! \brief performs a crc on data
-   *   the CRC is 8 bits wide, according to the WCDMA standard
-   */
-uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count);
+class CRC {
+ public:
+    static uint8_t Reflect(const uint8_t input);
+    static uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count);
+ private:
+    static const uint8_t crcTable[];
+    CRC() {}
+};
 
 }  // namespace validation
 #endif  // LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
