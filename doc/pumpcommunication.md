@@ -23,7 +23,7 @@ The carelink translation piece is responsible for decoding different packets and
 
 # Raw
 
-The raw namespace contains all the code used to deal with raw pump communication. It exposes packets to other places, which can use the raw data in the packets to reason about them.
+Contains all the code used to deal with raw pump communication. It exposes packets to other places, which can use the raw data in the packets to reason about them.
 
 It also is responsible for making sure packets to send get a CRC added and packets to receive are checked for validity, and dropped if they are not valid.
 
@@ -33,16 +33,26 @@ Defines how to talk with the radio class. Some energy-saving options are also re
 
 ## Radio
 
-The radio abstracts communication with the radio. It will have functions to help achieve maximum battery life. It uses the packet interface to receive and send packets.
+Abstracts communication with the radio. It will have functions to help achieve maximum battery life. It uses the packet interface to receive and send packets.
 
 ## RequestPacket
 
-The request class is responsible for storing data for a pump request. It's also responsible for appending a CRC to a request packet. It also contains a field to set the maximum retries a pump should do before giving up sending the packet. The max retries should be 0 if we only want the packet to be tried once.
+Responsible for storing data for a pump request. It's also responsible for appending a CRC to a request packet. It also contains a field to set the maximum retries a pump should do before giving up sending the packet. The max retries should be 0 if we only want the packet to be tried once.
 
 ## ResponsePacket
 
-The response packet is responsible for storing the data from a pump response. It's also responsible for validating a packet using the CRC in the packet.
+Responsible for storing the data from a pump response. It's also responsible for validating a packet using the CRC in the packet.
 
 ## PumpConfiguration
 
 Keeps track of settings for the pump and which might be different between different users.
+
+## PumpConfigurationReader
+
+Responsible for retrieving the configuration from a file and converting it to a PumpConfiguration.
+
+### Validation
+
+#### CRC
+
+Responsible for validation of a packet. Pump expects a CRC on a packet, sends a CRC with a response packet.
