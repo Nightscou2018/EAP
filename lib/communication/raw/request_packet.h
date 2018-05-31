@@ -14,12 +14,13 @@ static const size_t packet_length = 64;
 
 class RequestPacket {
  public:
-  RequestPacket(std::array<uint32_t, packet_length> data, int max_retries);
+  RequestPacket() = delete;
+  RequestPacket(std::array<uint8_t, packet_length> data, int max_retries);
   ~RequestPacket();
-  int const MaxRetries();
-  std::array<uint32_t, packet_length> const GetData();
+  int MaxRetries() const;
+  std::array<uint8_t, packet_length> GetData() const;
  private:
-  std::array<uint32_t, packet_length> m_data;
+  std::array<uint8_t, packet_length> m_data;
   int m_max_retries;
 };
 

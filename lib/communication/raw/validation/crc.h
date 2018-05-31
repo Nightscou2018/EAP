@@ -8,9 +8,9 @@ namespace raw {
 namespace validation {
 class CRC {
  public:
-      static uint8_t Reflect(const uint8_t input);
       static uint8_t CRC8WCDMA(const uint8_t data[], unsigned int count);
  private:
+      static uint8_t Reflect(const uint8_t input);
       static uint8_t crcTable[];
       CRC() {}
 };

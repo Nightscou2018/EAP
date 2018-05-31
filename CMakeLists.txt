@@ -42,6 +42,7 @@ enable_testing()
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_SRC_FILES
   ${TEST_DIR}/test_crc.cpp
+  ${TEST_DIR}/test_requestpacket.cpp
   )
 
 foreach(_test_file ${TEST_SRC_FILES})
