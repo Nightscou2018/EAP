@@ -8,7 +8,7 @@ namespace raw {
 class Radio {
   int timeOut;
   int retries;
-  Radio(struct PumpConfiguration configuration);
+  explicit Radio(struct PumpConfiguration configuration);
 };
 }
 }
