@@ -6,7 +6,9 @@
 namespace communication {
 namespace protocol {
 
-enum class kFirmawareVersion;
+enum class MessageType {
+    kFirmwareVersion
+};
 
 }  // namespace protocol
 }  // namespace communication
