@@ -1,6 +1,6 @@
 // Copyright 2018 EAP
 
-#include "validation/crc.h"
+#include "lib/communication/raw/validation/crc.h"
 
 namespace validation {
 
