@@ -1,7 +1,7 @@
 // Copyright 2018 EAP
 
-#ifndef LIB_COMMUNICATION_RAW_RESPONSE_PACKET_H_
-#define LIB_COMMUNICATION_RAW_RESPONSE_PACKET_H_
+#ifndef COMMUNICATION_RAW_RESPONSE_PACKET_H_
+#define COMMUNICATION_RAW_RESPONSE_PACKET_H_
 
 #include <stdint.h>
 #include <array>
@@ -25,4 +25,4 @@ class ResponsePacket {
 }  // namespace raw
 }  // namespace communication
 
-#endif  // LIB_COMMUNICATION_RAW_RESPONSE_PACKET_H_
+#endif  // COMMUNICATION_RAW_RESPONSE_PACKET_H_

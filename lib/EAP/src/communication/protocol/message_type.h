@@ -1,7 +1,7 @@
 // Copyright 2018 EAP
 
-#ifndef LIB_COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_
-#define LIB_COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_
+#ifndef COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_
+#define COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_
 
 namespace communication {
 namespace protocol {
@@ -11,4 +11,4 @@ enum class kFirmawareVersion;
 }  // namespace protocol
 }  // namespace communication
 
-#endif  // LIB_COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_
+#endif  // COMMUNICATION_PROTOCOL_MESSAGE_TYPE_H_

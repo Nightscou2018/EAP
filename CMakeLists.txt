@@ -10,7 +10,7 @@ endif()
 
 # set common include folder for module
 set(COMMON_INCLUDES
-  ${PROJECT_SOURCE_DIR}/lib/
+  ${PROJECT_SOURCE_DIR}/lib/EAP/src
 )
 
 MESSAGE(STATUS "COMMON_INCLUDES: " ${COMMON_INCLUDES})
@@ -26,7 +26,7 @@ include_directories(
   )
 
 # Build shared library and link it to test project
-add_subdirectory(lib)
+add_subdirectory(lib/EAP/src)
 
 set(TEST_LINK_LIBRARIES
   EAPlib

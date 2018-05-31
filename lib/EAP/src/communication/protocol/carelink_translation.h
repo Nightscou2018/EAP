@@ -1,12 +1,12 @@
 // Copyright 2018 EAP
 
-#ifndef LIB_COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_
-#define LIB_COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_
+#ifndef COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_
+#define COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_
 
 #include <array>
 #include <memory>
 #include "carelink_configuration.h"
-#include "communication/raw/IRadio.h"
+#include "communication/raw/iradio.h"
 
 namespace communication {
 namespace protocol {
@@ -30,4 +30,4 @@ class CarelinkTranslation {
 }  // namespace protocol
 }  // namespace communication
 
-#endif  // LIB_COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_
+#endif  // COMMUNICATION_PROTOCOL_CARELINK_TRANSLATION_H_

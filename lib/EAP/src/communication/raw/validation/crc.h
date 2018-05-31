@@ -1,6 +1,6 @@
 // Copyright 2018 EAP
-#ifndef LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
-#define LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
+#ifndef COMMUNICATION_RAW_VALIDATION_CRC_H_
+#define COMMUNICATION_RAW_VALIDATION_CRC_H_
 
 #include <inttypes.h>
 namespace communication {
@@ -18,4 +18,4 @@ class CRC {
 }  // namespace validation
 }  // namespace raw
 }  // namespace communication
-#endif  // LIB_COMMUNICATION_RAW_VALIDATION_CRC_H_
+#endif  // COMMUNICATION_RAW_VALIDATION_CRC_H_
