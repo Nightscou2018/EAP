@@ -5,7 +5,7 @@
 #include "communication/raw/validation/crc.h"
 
 TEST(TestCRC, OnlyZero) {
-  using communication::raw::validation;
+  using communication::raw::validation::CRC;
   uint8_t input = 0x00;
   uint8_t result = CRC::CRC8WCDMA(&input, 1);
 
@@ -13,7 +13,7 @@ TEST(TestCRC, OnlyZero) {
 }
 
 TEST(TestCRC, SingleValue) {
-  using communication::raw::validation;
+  using communication::raw::validation::CRC;
   uint8_t input = 0x5C;
   uint8_t result = CRC::CRC8WCDMA(&input, 1);
 
@@ -21,7 +21,7 @@ TEST(TestCRC, SingleValue) {
 }
 
 TEST(TestCRC, MultiValueIdentical) {
-  using communication::raw::validation;
+  using communication::raw::validation::CRC;
   uint8_t input[] = { 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55 };
   uint8_t result = CRC::CRC8WCDMA(input, sizeof(input) / sizeof(input[0]));
 
@@ -29,7 +29,7 @@ TEST(TestCRC, MultiValueIdentical) {
 }
 
 TEST(TestCRC, MultiValueDifferentValues) {
-  using communication::raw::validation;
+  using communication::raw::validation::CRC;
   uint8_t input[] = { 0x81, 0x72, 0x63, 0x54, 0x45, 0x36, 0x27, 0x18 };
   uint8_t result = CRC::CRC8WCDMA(input, sizeof(input) / sizeof(input[0]));
 
@@ -37,10 +37,9 @@ TEST(TestCRC, MultiValueDifferentValues) {
 }
 
 TEST(TestCRC, ConsecutiveExecution) {
-  using communication::raw::validation;
+  using communication::raw::validation::CRC;
   uint8_t input[] = { 0x81, 0x72, 0x63, 0x54, 0x45, 0x36, 0x27, 0x18 };
   uint8_t size    =  sizeof(input) / sizeof(input[0]);
-
 
   EXPECT_EQ(CRC::CRC8WCDMA(input, size), 0x8B);
   EXPECT_EQ(CRC::CRC8WCDMA(input, size), 0x8B);
