@@ -15,7 +15,8 @@ static const size_t packet_length = 64;
 class RequestPacket {
  public:
   RequestPacket() = delete;
-  RequestPacket(std::array<uint8_t, packet_length> data, int max_retries);
+  // data_size must be < packet_length
+  RequestPacket(std::array<uint8_t, packet_length> data, size_t data_size, int max_retries);
   ~RequestPacket();
   int MaxRetries() const;
   std::array<uint8_t, packet_length> GetData() const;
