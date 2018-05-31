@@ -6,7 +6,7 @@
 namespace communication {
 namespace raw {
 
-struct PumpConfiguration{
+struct PumpConfiguration {
   int frequency;
 };
 

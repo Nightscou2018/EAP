@@ -10,8 +10,6 @@ namespace raw {
 
 class PumpConfigurationReader {
  public:
-  PumpConfigurationReader();
-  ~PumpConfigurationReader();
   int ReadConfiguration(struct PumpConfiguration * configuration);
 };
 

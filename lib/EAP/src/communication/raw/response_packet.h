@@ -13,12 +13,13 @@ namespace raw {
 
 class ResponsePacket {
  public:
-  ResponsePacket(packet_data_t data, int max_retries);
-  ~ResponsePacket();
-  packet_data_t const GetData();
-  int const Validate();
+  ResponsePacket();
+  ResponsePacket(packet_data_t data, size_t data_size);
+  packet_data_t GetData() const;
+  int Validate() const;
  private:
   packet_data_t m_data;
+  size_t m_size;
 };
 
 }  // namespace raw
