@@ -4,6 +4,7 @@
 #define LIB_COMMUNICATION_PROTOCOL_CARELINKTRANSLATION_H_
 
 #include <array>
+#include <memory>
 #include "carelinkConfiguration.h"
 //#include "lib/communication/raw/iRadio.h"
 
