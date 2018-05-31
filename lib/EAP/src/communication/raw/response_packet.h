@@ -3,7 +3,7 @@
 #ifndef COMMUNICATION_RAW_RESPONSE_PACKET_H_
 #define COMMUNICATION_RAW_RESPONSE_PACKET_H_
 
-#include <stdint.h>
+#include <cstdint>
 #include <array>
 #include <string>
 

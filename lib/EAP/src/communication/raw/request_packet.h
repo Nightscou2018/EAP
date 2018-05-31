@@ -3,9 +3,8 @@
 #ifndef COMMUNICATION_RAW_REQUEST_PACKET_H_
 #define COMMUNICATION_RAW_REQUEST_PACKET_H_
 
-#include <stdint.h>
+#include <cstdint>
 #include <array>
-#include <string>
 
 namespace communication {
 namespace raw {
