@@ -6,7 +6,7 @@
 namespace communication {
 namespace protocol {
 
-class Protocol {
+class CarelinkConfiguration {
   int carelink_identifier;
 };
 

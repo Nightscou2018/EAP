@@ -5,21 +5,21 @@
 
 #include <array>
 #include "carelinkConfiguration.h"
-#include "lib/communication/raw/iRadio.h"
+//#include "lib/communication/raw/iRadio.h"
 
 namespace communication {
 namespace carelinkTranslation {
-
+template <size_t length>
 class CarelinkTranslation {
-  std::unique_ptr<Iradio> radio;
-  CarelinkTranslation(carelinkConfiguration configuration);
+  std::unique_ptr<int> radio;
+  CarelinkTranslation(CarelinkConfiguration configuration);
   int getFirmwareVersion();
   int getPumpModel();
   int setTempBasal(int basal_rate);
   int getScheduledBasalRate();
   int getTempBasalRate();
   int getISF();
-  array<int, int lenght> getHistory(int page);  // TODO(virus): change type to GlucoseLevel
+  std::array<int, length> getHistory(int page);  // TODO(virus): change type to GlucoseLevel
 };
 
 }  // namespace carelinkTranslation
