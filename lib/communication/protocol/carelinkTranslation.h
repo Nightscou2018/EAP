@@ -15,7 +15,7 @@ template <size_t length>
 
 class CarelinkTranslation {
   std::unique_ptr<int> radio;
-  CarelinkTranslation(CarelinkConfiguration configuration);
+  explicit CarelinkTranslation(CarelinkConfiguration configuration);
   int getFirmwareVersion();
   int getPumpModel();
   int setTempBasal(int basal_rate);
