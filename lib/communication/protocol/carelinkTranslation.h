@@ -9,11 +9,11 @@
 //#include "lib/communication/raw/iRadio.h"
 
 namespace communication {
-namespace carelinkTranslation {
+namespace protocol {
 template <size_t length>
 class CarelinkTranslation {
   std::unique_ptr<int> radio;
-  CarelinkTranslation(CarelinkConfiguration configuration);
+  CarelinkTranslation(CarelinkConfiguration);
   int getFirmwareVersion();
   int getPumpModel();
   int setTempBasal(int basal_rate);
@@ -23,7 +23,7 @@ class CarelinkTranslation {
   std::array<int, length> getHistory(int page);  // TODO(virus): change type to GlucoseLevel
 };
 
-}  // namespace carelinkTranslation
+}  // namespace protocol
 }  // namespace communication
 
 #endif  // LIB_COMMUNICATION_PROTOCOL_CARELINKTRANSLATION_H_
