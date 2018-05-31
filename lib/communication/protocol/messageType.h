@@ -4,11 +4,11 @@
 #define LIB_COMMUNICATION_PROTOCOL_MESSAGETYPE_H_
 
 namespace communication {
-namespace messageType {
+namespace protocol {
 
 enum class kFirmawareVersion;
 
-}  // namespace messageType
+}  // namespace protocol
 }  // namespace communication
 
 #endif  // LIB_COMMUNICATION_PROTOCOL_MESSAGETYPE_H_

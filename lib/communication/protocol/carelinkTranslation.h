@@ -6,14 +6,16 @@
 #include <array>
 #include <memory>
 #include "carelinkConfiguration.h"
-//#include "lib/communication/raw/iRadio.h"
+// #include "lib/communication/raw/iRadio.h"
 
 namespace communication {
 namespace protocol {
+
 template <size_t length>
+
 class CarelinkTranslation {
   std::unique_ptr<int> radio;
-  CarelinkTranslation(CarelinkConfiguration);
+  CarelinkTranslation(CarelinkConfiguration configuration);
   int getFirmwareVersion();
   int getPumpModel();
   int setTempBasal(int basal_rate);
