@@ -3,6 +3,7 @@
 *.svg
 
 # ignore generated document
+generated/
 *.pdf
 *.html
 
