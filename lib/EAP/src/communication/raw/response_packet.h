@@ -6,20 +6,19 @@
 #include <cstdint>
 #include <array>
 #include <string>
+#include "communication/raw/packet.h"
 
 namespace communication {
 namespace raw {
 
-static const size_t packet_length = 64;
-
 class ResponsePacket {
  public:
-  ResponsePacket(std::array<uint32_t, packet_length> data, int max_retries);
+  ResponsePacket(packet_data_t data, int max_retries);
   ~ResponsePacket();
-  std::array<uint32_t, packet_length> const GetData();
+  packet_data_t const GetData();
   int const Validate();
  private:
-  std::array<uint32_t, packet_length> m_data;
+  packet_data_t m_data;
 };
 
 }  // namespace raw
