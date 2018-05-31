@@ -13,8 +13,8 @@ class Radio : public IRadio {
   ~Radio();
 
  private:
-  int timeOut;
-  int retries;
+  int m_time_out;
+  int m_retries;
 };
 }  // namespace raw
 }  // namespace communication
