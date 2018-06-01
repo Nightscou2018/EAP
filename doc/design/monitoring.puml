@@ -1,0 +1,12 @@
+@startuml
+
+title EAP - monitoring
+
+class Monitor {
+  + Monitor(communication_layer: CarelinkTranslation)
+  - carelink: unique_ptr<CarelinkTranslation>
+  + getGlucoseLevelAtTime(time: time_t): int
+}
+
+@enduml
+

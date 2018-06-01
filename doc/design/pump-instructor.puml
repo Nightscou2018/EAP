@@ -1,0 +1,11 @@
+@startuml
+
+namespace instructor {
+class Instructor {
+  - predictor: unique_ptr<Predictor>
+  + Instructor(predictor: Predictor)
+  + loop(): void
+}
+}
+
+@enduml

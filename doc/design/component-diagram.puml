@@ -1,0 +1,17 @@
+@startuml
+
+title EAP - Component Diagram
+
+[instructor]
+[pumpcommunication] -- infoCommunication
+[pumpcommunication] -- commandCommunication
+[monitoring] - monitor
+[prediction] - predict
+
+
+[monitoring] --> infoCommunication
+[prediction] --> monitor
+[instructor] --> predict
+[instructor] --> commandCommunication
+
+@enduml

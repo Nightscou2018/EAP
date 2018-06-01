@@ -1,0 +1,90 @@
+@startuml
+
+set namespaceSeparator ::
+
+title EAP - PumpCommunication
+
+namespace communication {
+
+namespace protocol {
+class CarelinkTranslation {
+  - radio: unique_ptr<RadioInterface>
+  + CarelinkTranslation(config: CarelinkConfiguration)
+  + getFirmwareVersion(): int
+  + getPumpModel(): int
+  + setTempBasal(basal_rate: int): int
+  + getScheduledBasalRate(): int
+  + getTemporaryBasalRate(): int
+  + getISF(): int
+  + getHistory(page: int): array<GlucoseLevel, length>
+
+}
+
+enum MessageTypes {
+  kFirmwareVersion
+}
+
+class CarelinkConfiguration {
+  + carelink_identifier: int
+}
+}
+
+namespace raw {
+
+class RequestPacket {
+  + RequestPacket<length>(data: array<byte, length>, max_retries: int)
+  - m_data: array<byte, length>
+  - m_max_retries: int
+  + maxRetries() const: int
+  + getData() const: array<byte, length>
+}
+
+class ResponsePacket {
+  + ResponsePacket<length>(data: array<byte, length>)
+  - m_data: array<byte, length>
+  + getData() const: array<byte, length>
+  + validate() const: int
+}
+
+class PumpConfiguration {
+  + frequency: int
+}
+
+interface RadioInterface {
+  + request(request_packet: const RequestPacket&, response: ResponsePacket*): int
+  + init(): int
+  + wakeUp(): int
+  + sleep(): int
+}
+
+class Radio {
+  + Radio(configuration: struct PumpConfiguration)
+  - timeout: int
+  - retries: int
+}
+
+class PumpConfigurationReader {
+  + readConfiguration(config: struct PumpConfiguration*): int
+}
+
+namespace validation {
+class CRC {
+  {static} + CRC8WCDMA(data: byte[], count: unsigned int): uint8_t
+  {static} - reflect(input: uint8_t): uint8_t
+  {static} - crcTable : byte[]
+}
+}
+
+RadioInterface o-- ResponsePacket
+RadioInterface o-- RequestPacket
+Radio -|> RadioInterface
+Radio o-- PumpConfiguration
+}
+
+communication::raw::RequestPacket --> communication::raw::validation::CRC
+communication::raw::ResponsePacket -> communication::raw::validation::CRC
+communication::protocol::CarelinkTranslation *-- communication::raw::RadioInterface
+
+}
+@enduml
+

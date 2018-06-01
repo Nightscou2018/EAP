@@ -1,0 +1,19 @@
+@startuml
+
+namespace prediction {
+class Predictor {
+  + Predictor(monitor: Monitor, profile: Profile)
+  - monitor: unique_ptr<Monitor>
+  + predictGlucoseAtTime(time: time_t): int
+}
+
+class Profile {
+  
+}
+
+class ProfileLoader {
+  + getProfile(): Profile
+}
+}
+
+@enduml
