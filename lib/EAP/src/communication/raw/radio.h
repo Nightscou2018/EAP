@@ -13,14 +13,10 @@ class Radio : public IRadio {
  public:
   explicit Radio(struct PumpConfiguration configuration);
   ~Radio();
-  int Request(const RequestPacket& request_packet, ResponsePacket* response);
+  int Request(const packet_t& request_packet, packet_t* response, uint8_t max_attempts);
   int Init();
   int WakeUp();
   int Sleep();
-
- private:
-  int m_time_out;
-  int m_attempts;
 };
 
 }  // namespace raw

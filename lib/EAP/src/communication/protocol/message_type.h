@@ -7,7 +7,7 @@ namespace communication {
 namespace protocol {
 
 enum class MessageType {
-    kFirmwareVersion
+    kFirmwareVersion = 0x00
 };
 
 }  // namespace protocol

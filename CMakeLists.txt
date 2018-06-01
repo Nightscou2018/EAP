@@ -5,7 +5,7 @@ project(${PROJECT_NAME_STR} C CXX)
 find_package(Threads REQUIRED)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions(-Wall -ansi -Wno-deprecated -std=gnu++11 -pedantic)
+    add_definitions(-Wall -ansi -Wno-deprecated -std=gnu++11 -pedantic -fno-exceptions)
 endif()
 
 # set common include folder for module
@@ -41,8 +41,8 @@ enable_testing()
 
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_SRC_FILES
-  ${TEST_DIR}/test_crc.cpp
-  ${TEST_DIR}/test_requestpacket.cpp
+  ${TEST_DIR}/crc_test.cpp
+  ${TEST_DIR}/carelink_packet_test.cpp
   )
 
 foreach(_test_file ${TEST_SRC_FILES})
